@@ -55,9 +55,16 @@
     bounds.origin.y -= translatedPoint.y;
     
     // Set limitation
-    self.contentSize = CGSizeMake(bounds.size.width+200, bounds.size.height+200);
+    self.contentSize = CGSizeMake(bounds.size.width-50, bounds.size.height-50);
     
-    if (self.contentSize) {
+//    BOOL inBoundsRight = bounds.origin.x < self.contentSize.width;
+//    BOOL inBoundsLeft = bounds.origin.x > -self.contentSize.width;
+    
+    BOOL inBoundsY = fabs(bounds.origin.y) < self.contentSize.height;
+    BOOL inBoundsX = fabs(bounds.origin.x) < self.contentSize.width;
+    
+    // bounds can move only within the contentSize
+    if (inBoundsX && inBoundsY) {
         
         // update currentPosition
         self.bounds = bounds;
